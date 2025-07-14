@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+export ARCH=arm64
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export CONCURRENCY_LEVEL := $(shell nproc)
+
+%:
+        dh $@ --verbose
+
+
+KERNEL_VER := $(shell make -s kernelversion | grep -E '^[0-9]+\.[0-9]+.*')
+
+
+override_dh_gencontrol:
+        dh_gencontrol -- -v$(KERNEL_VER)+$(shell date +%Y%m%d)-1
+
+override_dh_auto_configure:
+        make arch=$(ARCH) defconfig
+
+override_dh_auto_build:
+        make -j$(CONCURRENCY_LEVEL)
+
+override_dh_auto_install:
+        mkdir -p debian/qcom-next-kernel-image/boot
+        mkdir -p debian/qcom-next-kernel-modules/lib/modules
+        mkdir -p debian/qcom-next-kernel-headers/usr/src
+
+        cp arch/arm64/boot/Image debian/qcom-next-kernel-image/boot/
+        cp -r include debian/qcom-next-kernel-headers/usr/src/
+
+override_dh_clean:
+        dh_clean

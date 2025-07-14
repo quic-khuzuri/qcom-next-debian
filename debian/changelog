@@ -1,0 +1,5 @@
+qcom-next-kernel (1.0-1) unstable; urgency=medium
+
+  * Initial release of the qcom-next kernel packaging.
+
+ -- Kaushik Huzuri <khuzuri@qti.qualcomm.com>  Mon, 14 Jun 2025 12:00:00 +0000

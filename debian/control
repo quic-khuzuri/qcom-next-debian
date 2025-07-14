@@ -1,0 +1,19 @@
+Source: qcom-next-kernel
+Section: kernel
+Priority: optional
+Maintainer: Kaushik Huzuri <khuzuri@qti.qualcomm.com>
+Build-Depends: debhelper-compat (= 13), fakeroot, bc, kmod, cpio, flex, bison, libncurses-dev, libssl-dev
+Standards-Version: 4.5.0
+Rules-Requires-Root: yes
+
+Package: qcom-next-kernel-image
+Architecture: any
+Description: Custom Qualcomm qcom-next kernel image
+
+Package: qcom-next-kernel-headers
+Architecture: any
+Description: Custom Qualcomm qcom-next kernel headers
+
+Package: qcom-next-kernel-modules
+Architecture: any
+Description: Custom Qualcomm qcom-next kernel modules
